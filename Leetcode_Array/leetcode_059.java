@@ -1,7 +1,7 @@
 
 /*
-	转置矩阵
-
+	螺旋矩阵2
+	
 	给定一个矩阵 A， 返回 A 的转置矩阵。
 
 	矩阵的转置是指将矩阵的主对角线翻转，交换矩阵的行索引与列索引。
@@ -22,17 +22,27 @@
 
 	1 <= A.length <= 1000
 	1 <= A[0].length <= 1000
+
 */
 
+//这个结题思路是参考排名击败100%用户的解法，思路很巧妙，代码也非常简洁
+
 class Solution {
-    public int[][] transpose(int[][] A) {
-        int leni = A.length, lenj = A[0].length;
-        int[][] res = new int[lenj][leni];
-        for(int i=0; i<leni; i++){
-            for(int j=0; j<lenj; j++){
-                res[j][i] = A[i][j];
-            }
+    public int[][] generateMatrix(int n) {
+        int[][] arr = new int[n][n];
+        int c = 1, j=0;
+        while(c <= n*n){
+            for(int i=j; i<n-j; i++)
+                arr[j][i] = c++;
+            for(int i=j+1; i<n-j; i++)
+                arr[i][n-j-1] = c++;
+            for(int i=n-j-2; i>=j; i--)
+                arr[n-j-1][i] = c++;
+            for(int i=n-j-2; i>j; i--)
+                arr[i][j] = c++;
+            
+            j++;
         }
-        return res;
+        return arr;
     }
 }
