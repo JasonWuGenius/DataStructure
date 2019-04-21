@@ -1,63 +1,40 @@
-import java.util.Scanner;
-public class test {
-    public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        int n = in.nextInt();
-        double[] rand = new double[n+1];
-        rand[0] = 0;
-        for(int i=1; i<=n; i++){
-        	rand[i] = in.nextDouble();
+import java.io.*;
+import java.lang.reflect.Array;
+import java.util.*;
+public class Main{
+    public static void main(String[] args) throws IOException{
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+        String[] s = bf.readLine().split(" ");
+        String x1 = s[0];
+        int k1 = Integer.parseInt(s[1]);
+        String x2 = s[2];
+        int k2 = Integer.parseInt(s[3]);
+        StringBuffer sb1 = new StringBuffer();
+        StringBuffer sb2 = new StringBuffer();
+        for(int i=0; i<k1; i++){
+            sb1.append(x1);
         }
-        double res1 = 0;
-        double res2 = 0;
-        int count = 0;
-        int index = 1;
-        while(res1 < 0.5 && res2 < 0.5){
-        	if(index % 2 == 1){
-        		int i=1;
-        		for(; i<=n; i++){
-        			if(i % 2 == 1){
-        				res1 += rand[i];
-        			}
-        			if(i % 2 != 1){
-        				res2 += rand[i];
-        			}
-        			if(count++ == 100){
-        				break;
-        			}
-        		}
-        	}
-        	else{
-        		if(n % 2 == 1){
-        			int i=1;
-        			for(; i<=n; i++){
-        				if(i % 2 == 1){
-        					res2 += rand[i];
-        				}
-        				if(i % 2 != 1){
-        					res1 += rand[i];
-        				}
-        				if(count++ == 100){
-        					break;
-        				}
-        			}
-        		}
-        		else{
-        			int i=1;
-        			for(; i<=n; i++){
-        				if(i % 2 == 1){
-        					res1 += rand[i];
-        				}
-        				if(i % 2 != 1){
-        					res2 += rand[i];
-        				}
-        				if(count++ == 100){
-        					break;
-        				}
-        			}
-        		}
-        	}
+        for(int i=0; i<k2; i++){
+            sb2.append(x2);
         }
-        System.out.printf("%.4f",res1);
+        int len1 = sb1.toString().length();
+        int len2 = sb2.toString().length();
+        if(len1 > len2){
+            System.out.println("Greater");
+        }
+        else if(len1 < len2){
+            System.out.println("Less");
+        }
+        else{
+            for(int i=0; i<len1; i++){
+                if(sb1.charAt(i) > sb2.charAt(i)){
+                    System.out.print("Greater");
+                }
+                else if(sb1.charAt(i) < sb2.charAt(i)){
+                    System.out.print("Less");
+                }
+            }
+            System.out.println("Equal");
+        }
     }
 }
