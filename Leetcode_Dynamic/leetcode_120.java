@@ -1,3 +1,4 @@
+package Leetcode_Dynamic;
 /*
 	三角形最小路径和
 

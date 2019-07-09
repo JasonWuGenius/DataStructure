@@ -1,16 +1,11 @@
+package Leetcode_Dynamic;
 /*
 	不同路径2
 
-	一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为“Start” ）。
-
+    一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为“Start” ）。
 	机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角（在下图中标记为“Finish”）。
-
 	现在考虑网格中有障碍物。那么从左上角到右下角将会有多少条不同的路径？
-
-
-
 	网格中的障碍物和空位置分别用 1 和 0 来表示。
-
 	说明：m 和 n 的值均不超过 100。
 
 	示例 1:
@@ -32,31 +27,32 @@
 
 //动态规划思路
 
-class Solution {
+class leetcode_063 {
     public int uniquePathsWithObstacles(int[][] matrix) {
         if(matrix == null || matrix.length == 0){
             return 0;
         }
-        int m=matrix.length;
-        int n=matrix[0].length;
+        int m = matrix.length;
+        int n = matrix[0].length;
         int[][] dp = new int[m][n];
         boolean barrier = false;
-		//中间的思路很巧妙
         for(int i=0; i<n; i++){
             if(matrix[0][i] == 1){
                 barrier = true;
             }
-            if(barrier)
+            if(barrier){
                 break;
+            }
             dp[0][i] = 1;
         }
         barrier = false;
         for(int i=0; i<m; i++){
-            if(matrix[i][0] == 1){
+            if(matrix[m][0] == 1){
                 barrier = true;
             }
-            if(barrier)
+            if(barrier){
                 break;
+            }
             dp[i][0] = 1;
         }
         for(int i=1; i<m; i++){
