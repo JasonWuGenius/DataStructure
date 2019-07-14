@@ -21,10 +21,12 @@ import java.util.List;
  */
 public class leetcode_046 {
 	//方法一：迭代法
-	static List<List<Integer>> res = new  ArrayList<>();
+	static List<List<Integer>> res = new ArrayList<>();
 	static boolean[] used;
-
 	public static List<List<Integer>> permute(int[] nums){
+		if(nums.length == 0 || nums == null){
+			return res;
+		}
 		used = new boolean[nums.length];
 		List<Integer> list = new ArrayList<>();
 		permuteSub(nums, 0, list);
@@ -34,6 +36,7 @@ public class leetcode_046 {
 	public static void permuteSub(int[] nums, int index, List<Integer> list){
 		if(index == nums.length){
 			res.add(new ArrayList<>(list));
+			return;
 		}
 		for(int i=0; i<nums.length; i++){
 			if(!used[i]){
@@ -46,7 +49,6 @@ public class leetcode_046 {
 		}
 		return;
 	}
-
 
 	public static void main(String[] args) {
 		int[] nums = {1,2,3};

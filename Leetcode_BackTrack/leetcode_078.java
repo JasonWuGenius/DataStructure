@@ -24,17 +24,22 @@ import java.util.List;
  */
 public class leetcode_078 {
 	public static List<List<Integer>> subsets(int[] nums){
-		List<List<Integer>> res = new ArrayList<List<Integer>>();
-		List<Integer> temp = new ArrayList<Integer>();
-		dfs(res, temp, nums, 0);
+		List<List<Integer>> res = new ArrayList<>();
+		List<Integer> list = new ArrayList<>();
+		if(nums == null){
+			return res;
+		}
+		res.add(new ArrayList<>());
+		dfs(res, list, nums, 0);
 		return res;
 	}
-	private static void dfs(List<List<Integer>> res, List<Integer> temp, int[] nums, int j){
-		res.add(new ArrayList<Integer>(temp));
+	private static void dfs(List<List<Integer>> res, List<Integer> list, int[] nums, int j){
 		for(int i=j; i<nums.length; i++){
-			temp.add(nums[i]);
-			dfs(res, temp, nums, i+1);
-			temp.remove(temp.size()-1);
+			list.add(nums[i]);
+			res.add(new ArrayList<>(list));
+			// 这里需要注意的是dfs()中索引是i+1，而不是j+1
+			dfs(res, list, nums, i+1);
+			list.remove(list.size()-1);
 		}
 	}
 	public static void main(String[] args) {
