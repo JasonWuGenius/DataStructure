@@ -50,11 +50,12 @@ class leetcode_039 {
 			res.add(new ArrayList<>(list));
 			return;
 		}
-		for(int i=index; i<nums.length&&target>=nums[i]; i++){
+		for(int i=index; i<nums.length && target>=nums[i]; i++){
 			list.add(nums[i]);
 			combinationSumSub(nums, list, i, target-nums[i]);
 			list.remove(list.size()-1);
 		}
+
 	}
 
 	public static void main(String[] args) {

@@ -24,9 +24,6 @@ public class leetcode_046 {
 	static List<List<Integer>> res = new ArrayList<>();
 	static boolean[] used;
 	public static List<List<Integer>> permute(int[] nums){
-		if(nums.length == 0 || nums == null){
-			return res;
-		}
 		used = new boolean[nums.length];
 		List<Integer> list = new ArrayList<>();
 		permuteSub(nums, 0, list);
@@ -40,14 +37,13 @@ public class leetcode_046 {
 		}
 		for(int i=0; i<nums.length; i++){
 			if(!used[i]){
-				list.add(nums[i]);
 				used[i] = true;
+				list.add(nums[i]);
 				permuteSub(nums, index+1, list);
-				list.remove(list.size()-1);
 				used[i] = false;
+				list.remove(list.size()-1);
 			}
 		}
-		return;
 	}
 
 	public static void main(String[] args) {
@@ -56,10 +52,10 @@ public class leetcode_046 {
 		for(int item: nums){
 			System.out.print(item+" ");
 		}
-		System.out.println("\nThe permute: ");
-		for(List<Integer> item: permute(nums)){
-				System.out.print(item+" ");
-		}
+		System.out.println("\nThe permute: "+permute(nums));
+		// for(List<Integer> item: permute(nums)){
+		// 		System.out.print(item+" ");
+		// }
 		
 	}
 }
