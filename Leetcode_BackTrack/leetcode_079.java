@@ -21,30 +21,32 @@ import java.util.List;
  */
 public class leetcode_079 {
 	public static boolean exist(char[][] board, String word) {
-		char[] wordChars = word.toCharArray();
 		int m = board.length;
 		int n = board[0].length;
 		boolean[][] used = new boolean[m][n];
+		char[] wordChar = word.toCharArray();
 		for(int i=0; i<m; i++){
 			for(int j=0; j<n; j++){
-				if(existSub(board, wordChars, used, i, j, 0)){
+				if(existSub(board, wordChar, i, j, 0, used)){
 					return true;
 				}
 			}
 		}
 		return false;
+
 	}
-	public static boolean existSub(char[][] board, char[] wordChars, boolean[][] used, int row, int col, int pathLength){
+	public static boolean existSub(char[][] board, char[] wordChar, int row, int col, int pathLength, boolean[][] used){
 		boolean flag = false;
-		if(pathLength == wordChars.length){
-			return true;
-		}
-		if(row>=0 && row<board.length && col>=0 && col<board[0].length && !used[row][col] && board[row][col]==wordChars[pathLength++]){
+		if(row>0 && row<board.length && col>0 && col<board[0].length && !used[row][col] && board[row][col] == wordChar[pathLength]){
 			used[row][col] = true;
-			flag = existSub(board, wordChars, used, row+1, col, pathLength) ||
-			existSub(board, wordChars, used, row-1, col, pathLength)||
-			existSub(board, wordChars, used, row, col+1, pathLength)||
-			existSub(board, wordChars, used, row, col-1, pathLength) ;
+			pathLength++;
+			if(pathLength == wordChar.length){
+				return true;
+			}
+			flag = existSub(board, wordChar, row+1, col, pathLength, used) ||
+					existSub(board, wordChar, row-1, col, pathLength, used) ||
+					existSub(board, wordChar, row, col+1, pathLength, used) ||
+					existSub(board, wordChar, row, col-1, pathLength, used);
 			if(!flag){
 				used[row][col] = false;
 				pathLength--;
@@ -53,11 +55,12 @@ public class leetcode_079 {
 		return flag;
 	}
 
+
 	public static void main(String[] args) {
 		char[][] board = {{'A', 'B', 'C', 'E'}, {'S', 'F', 'C', 'S'}, {'A', 'D', 'E', 'E'}};
 		// String word = "ABCCED";
-		// String word = "SEE";
-		String word = "ABCD";
+		String word = "SEE";
+		// String word = "ABCD";
 		System.out.println("The board: ");
 		for(int i=0; i<board.length; i++){
 			for(char c:board[i]){
