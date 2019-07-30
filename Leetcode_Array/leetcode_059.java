@@ -1,4 +1,4 @@
-
+package Leetcode_Array;
 /*
 	螺旋矩阵2
 	
@@ -27,7 +27,7 @@
 
 //这个结题思路是参考排名击败100%用户的解法，思路很巧妙，代码也非常简洁
 
-class Solution {
+class leetcode_059 {
     public int[][] generateMatrix(int n) {
         int[][] arr = new int[n][n];
         int c = 1, j=0;
