@@ -1,41 +1,43 @@
 package Leetcode_LinkedList;
 
+/*
+	åˆå¹¶ä¸¤ä¸ªæœ‰åºé“¾è¡¨
+
+	å°†ä¸¤ä¸ªæœ‰åºé“¾è¡¨åˆå¹¶ä¸ºä¸€ä¸ªæ–°çš„æœ‰åºé“¾è¡¨å¹¶è¿”å›žã€‚æ–°é“¾è¡¨æ˜¯é€šè¿‡æ‹¼æŽ¥ç»™å®šçš„ä¸¤ä¸ªé“¾è¡¨çš„æ‰€æœ‰èŠ‚ç‚¹ç»„æˆçš„ã€‚ 
+	ç¤ºä¾‹ï¼š
+	è¾“å…¥ï¼š1->2->4, 1->3->4è¾“å‡ºï¼š1->1->2->3->4->4
+	
+	æ€è·¯ï¼š
+	1ã€åˆå¹¶ä¸¤ä¸ªæœ‰åºé“¾è¡¨ï¼Œç”±äºŽä¸¤ä¸ªé“¾è¡¨æ˜¯æœ‰åºçš„ï¼Œé‚£ä¹ˆå°±ä¾æ¬¡åŽ»æ¯”è¾ƒä¸¤ä¸ªé“¾è¡¨çš„å½“å‰èŠ‚ç‚¹çš„å¤§å°ï¼›é¦–å…ˆæ–°å»ºä¸€ä¸ªå¤´ç»“ç‚¹tempï¼Œç”¨æ¥ä»£è¡¨ä¸€ä¸ªæ–°çš„é“¾è¡¨çš„å¤´ç»“ç‚¹ã€‚
+	2ã€é“¾è¡¨Aå’ŒBï¼Œé“¾è¡¨Açš„å½“å‰èŠ‚ç‚¹æ˜¯èŠ‚ç‚¹A1ï¼Œé“¾è¡¨Bçš„å½“å‰çš„èŠ‚ç‚¹æ˜¯èŠ‚ç‚¹B1ï¼Œç„¶åŽåŽ»æ¯”è¾ƒA1ä¸ŽB1çš„å¤§å°ï¼Œå¦‚æžœA1æ¯”B1å°ï¼Œé‚£ä¹ˆtempçš„ä¸‹ä¸€ä¸ªèŠ‚ç‚¹å°±æŒ‡å‘A1,åŒæ—¶é“¾è¡¨Aå¾€ä¸‹ç§»åŠ¨ä¸€ä¸ªèŠ‚ç‚¹ï¼›
+	3ã€å¦‚æžœæ¯”è¾ƒA1ä¸ŽB1çš„å¤§å°ï¼Œå‘çŽ°A1æ¯”B1å¤§ï¼Œé‚£ä¹ˆtempçš„ä¸‹ä¸€ä¸ªèŠ‚ç‚¹å°±æŒ‡å‘B1ï¼ŒåŒæ—¶é“¾è¡¨Bå¾€ä¸‹ç§»åŠ¨ä¸€ä¸ªèŠ‚ç‚¹ï¼›
+	4ã€ç›´åˆ°é“¾è¡¨Aæˆ–è€…é“¾è¡¨Bå½“ä¸­çš„ä¸€ä¸ªé“¾è¡¨ä¸ºç©ºäº†ï¼Œé‚£ä¹ˆå¾ªçŽ¯ç»“æŸã€‚
+	5ã€æœ€åŽæ¯”å¦‚è¯´é“¾è¡¨Aä¸ºç©ºäº†ï¼Œé‚£ä¹ˆBå¯èƒ½ä¸ä¸ºç©ºï¼Œæ‰€ä»¥tempçš„ä¸‹ä¸€ä¸ªèŠ‚ç‚¹æŒ‡å‘Bï¼Œè¿™æ ·å°±æŠŠå‰©ä½™çš„Bçš„èŠ‚ç‚¹æŽ¥åœ¨äº†åŽé¢ï¼›
+	6ã€æœ€åŽå¦‚æžœé“¾è¡¨Bä¸ºç©ºäº†ï¼Œé‚£ä¹ˆAå¯èƒ½ä¸ä¸ºç©ºï¼Œæ‰€ä»¥tempçš„ä¸‹ä¸€ä¸ªèŠ‚ç‚¹æŒ‡å‘Aï¼Œè¿™æ ·å°±æŠŠå‰©ä½™çš„Aé“¾è¡¨çš„èŠ‚ç‚¹æŽ¥åœ¨äº†tempçš„åŽé¢
+ */
 public class leetcode_021 {
-	/*
-	 *  ½«Á½¸öÓÐÐòÁ´±íºÏ²¢ÎªÒ»¸öÐÂµÄÓÐÐòÁ´±í²¢·µ»Ø¡£ÐÂÁ´±íÊÇÍ¨¹ýÆ´½Ó¸ø¶¨µÄÁ½¸öÁ´±íµÄËùÓÐ½Úµã×é³ÉµÄ¡£ 
-		Ê¾Àý£º
-		ÊäÈë£º1->2->4, 1->3->4Êä³ö£º1->1->2->3->4->4
-		
-		Ë¼Â·£º
-		1¡¢ºÏ²¢Á½¸öÓÐÐòÁ´±í£¬ÓÉÓÚÁ½¸öÁ´±íÊÇÓÐÐòµÄ£¬ÄÇÃ´¾ÍÒÀ´ÎÈ¥±È½ÏÁ½¸öÁ´±íµÄµ±Ç°½ÚµãµÄ´óÐ¡£»Ê×ÏÈÐÂ½¨Ò»¸öÍ·½áµãtemp£¬ÓÃÀ´´ú±íÒ»¸öÐÂµÄÁ´±íµÄÍ·½áµã¡£
-		2¡¢Á´±íAºÍB£¬Á´±íAµÄµ±Ç°½ÚµãÊÇ½ÚµãA1£¬Á´±íBµÄµ±Ç°µÄ½ÚµãÊÇ½ÚµãB1£¬È»ºóÈ¥±È½ÏA1ÓëB1µÄ´óÐ¡£¬Èç¹ûA1±ÈB1Ð¡£¬ÄÇÃ´tempµÄÏÂÒ»¸ö½Úµã¾ÍÖ¸ÏòA1,Í¬Ê±Á´±íAÍùÏÂÒÆ¶¯Ò»¸ö½Úµã£»
-		3¡¢Èç¹û±È½ÏA1ÓëB1µÄ´óÐ¡£¬·¢ÏÖA1±ÈB1´ó£¬ÄÇÃ´tempµÄÏÂÒ»¸ö½Úµã¾ÍÖ¸ÏòB1£¬Í¬Ê±Á´±íBÍùÏÂÒÆ¶¯Ò»¸ö½Úµã£»
-		4¡¢Ö±µ½Á´±íA»òÕßÁ´±íBµ±ÖÐµÄÒ»¸öÁ´±íÎª¿ÕÁË£¬ÄÇÃ´Ñ­»·½áÊø¡£
-		5¡¢×îºó±ÈÈçËµÁ´±íAÎª¿ÕÁË£¬ÄÇÃ´B¿ÉÄÜ²»Îª¿Õ£¬ËùÒÔtempµÄÏÂÒ»¸ö½ÚµãÖ¸ÏòB£¬ÕâÑù¾Í°ÑÊ£ÓàµÄBµÄ½Úµã½ÓÔÚÁËºóÃæ£»
-		6¡¢×îºóÈç¹ûÁ´±íBÎª¿ÕÁË£¬ÄÇÃ´A¿ÉÄÜ²»Îª¿Õ£¬ËùÒÔtempµÄÏÂÒ»¸ö½ÚµãÖ¸ÏòA£¬ÕâÑù¾Í°ÑÊ£ÓàµÄAÁ´±íµÄ½Úµã½ÓÔÚÁËtempµÄºóÃæ
-	 */
 	public static ListNode mergeTwoLists(ListNode l1, ListNode l2){
-		ListNode temp = new ListNode(-1);
-		ListNode result = temp;
+		ListNode pre = new ListNode(-1);
+		ListNode res = pre;
 		while(l1 != null && l2 != null){
 			if(l1.val < l2.val){
-				temp.next = l1;
-				temp = temp.next;
+				pre.next = l1;
+				pre = pre.next;
 				l1 = l1.next;
 			}
 			else{
-				temp.next = l2;
-				temp = temp.next;
+				pre.next = l2;
+				pre = pre.next;
 				l2 = l2.next;
 			}
 		}
 		if(l1 == null){
-			temp.next = l2;
+			pre.next = l2;
 		}
 		if(l2 == null){
-			temp.next = l1;
+			pre.next = l1;
 		}
-		return result.next;
+		return res.next;
 	}
 	public static void main(String[] args) {
 		ListNode node1 = new ListNode(1);
@@ -50,11 +52,11 @@ public class leetcode_021 {
 		node4.next = node5;
 		node5.next = node6;
 		
-		System.out.println("´òÓ¡Á´±í1£º");
+		System.out.println("List1:");
 		PrintList.printFromHeadToTail(node1);
-		System.out.println("´òÓ¡Á´±í2£º");
+		System.out.println("List2:");
 		PrintList.printFromHeadToTail(node4);
-		System.out.println("´òÓ¡ºÏ²¢Á´±í£º");
+		System.out.println("Merged List:");
 		PrintList.printFromHeadToTail(mergeTwoLists(node1, node4));
 	}
 

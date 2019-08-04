@@ -1,3 +1,5 @@
+package Leetcode_Dynamic;
+
 /*
 	等差数列划分
 

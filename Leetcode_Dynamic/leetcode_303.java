@@ -1,3 +1,4 @@
+package Leetcode_Dynamic;
 /*
 	区域和检索-数组不可变
 
